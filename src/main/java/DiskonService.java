@@ -5,6 +5,10 @@ public class DiskonService {
     public record HasilDiskon(int persenDiskon, boolean gratisOngkir) {}
 
     public static HasilDiskon hitung(boolean member, double totalBelanja, boolean voucher) {
+        if (totalBelanja < 0) {
+            throw new IllegalArgumentException("Total belanja tidak boleh negatif");
+        }
+
         boolean besar = totalBelanja >= BATAS_BELANJA;
         int diskon;
 
